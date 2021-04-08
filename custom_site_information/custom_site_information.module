@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Provides the posts functionalities.
+ */
+
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Ajax\InsertCommand;
+use Drupal\Core\Ajax\BeforeCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\File\FileSystem;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Implements hook_help().
+ */
+function custom_site_information_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.custom_site_information':
+      $output = '<h3>' . t('About Custom Site Information') . '</h3>';
+      $output .= '<p>';
+      $output .= t('Provides the functionality to add a new Site API Key value in Site Information Settings.');
+      $output .= '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_alter() to change button text.
+ */
+function custom_site_information_form_system_site_information_settings_alter(&$form, $form_state, $form_id) {
+	// Change form submit button text 'Save Configuration' to 'Update Configuration'
+	$form['actions']['submit']['#value'] = t('Update configuration');
+}

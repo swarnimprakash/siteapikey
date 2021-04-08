@@ -1,0 +1,7 @@
+custom_site_information.content:
+  path: '/page_json/{apikey}/{nid}'
+  defaults:
+    _title: 'Page Json'
+    _controller: '\Drupal\custom_site_information\Controller\SiteApiPageController::content'
+  requirements:
+    _permission:  'access content'

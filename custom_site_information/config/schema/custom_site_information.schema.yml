@@ -1,0 +1,6 @@
+# For add Site API Key field in site information 
+system.site:
+  mapping:
+    siteapikey:
+      type: label
+      label: 'Site API Key'
